@@ -69,7 +69,7 @@ void Field::DisplayField(Field* _target)
 	}
 }
 
-void Field::PlaceShip(const bool _isVertical, Ship*& _ship, const u_int _cordY, const u_int _cordX)
+void Field::PlaceShip(const bool _isVertical, Ship*& _ship, const u_int& _cordX, const u_int& _cordY)
 {
 	// Je pose mon ancre sois sur une ligne sois sur une colonne
 	// Si c'est vertical -> on garde la colonne et ont prend en point de départ la ligne (X)
@@ -97,11 +97,15 @@ void Field::PlaceShip(const bool _isVertical, Ship*& _ship, const u_int _cordY, 
 	
 }
 
-void Field::HitSpace()
+void Field::HitSpace(const u_int& _x, const u_int& _y)
 {
+	if (spaces[_x][_y].isShipOnIt())
+	{
+		DISPLAY("TOUCHER", true);
+	}
 
+	spaces[_x][_y].SetIsTouched(true);
 }
-
 
 bool Field::isOutOfBond(Ship*& _ship, const u_int _cord) const
 {

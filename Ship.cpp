@@ -28,6 +28,7 @@ bool Ship::IsAlive()
 
 void Ship::TakeADamage()
 {
+
 }
 
 

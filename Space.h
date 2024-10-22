@@ -8,6 +8,7 @@ class Space
 public:
 	void SetProperty(Ship* _property);
 	Ship* GetProperty() const;
+	void SetIsTouched(const bool _set);
 	bool GetIsTouched()const;
 
 	Space();

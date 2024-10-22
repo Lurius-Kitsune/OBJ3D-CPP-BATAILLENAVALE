@@ -10,6 +10,11 @@ Ship* Space::GetProperty() const
 	return spaceProperty;
 }
 
+void Space::SetIsTouched(const bool _set)
+{
+	isTouched = _set;
+}
+
 bool Space::GetIsTouched() const
 {
 	return isTouched;
