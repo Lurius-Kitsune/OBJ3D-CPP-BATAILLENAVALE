@@ -14,14 +14,16 @@ Game::Game(Field* _player1Field, Field* _player2Field)
 
 void Game::LaunchGame()
 {
-	do
+	while (!isGameEnded())
 	{
-
-	} while (true);
+		player1Field->DisplayField(player2Field);
+		player2Field->DisplayField(player1Field);
+	}
 }
+
 
 bool Game::isGameEnded()
 {
-	return false;
+	return player1Field->AreAllShipDead() || player2Field->AreAllShipDead();
 }
 

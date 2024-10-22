@@ -21,9 +21,9 @@ Ship::Ship(const string& _name, const int _spaceSize)
 	isDead = 0;
 }
 
-bool Ship::IsAlive()
+bool Ship::IsDead()
 {
-	return false;
+	return isDead;
 }
 
 void Ship::TakeADamage()
