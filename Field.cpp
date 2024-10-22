@@ -106,7 +106,6 @@ void Field::SpaceHit(const u_int& _x, const u_int& _y)
 		DISPLAY("TOUCHER", true);
 		spaces[_x][_y].GetProperty()->TakeADamage();
 	}
-
 	spaces[_x][_y].SetIsTouched(true);
 }
 
