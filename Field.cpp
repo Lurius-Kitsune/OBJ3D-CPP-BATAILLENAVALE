@@ -73,7 +73,7 @@ void Field::PlaceShip(const bool _isVertical, Ship*& _ship, const u_int _cordY, 
 {
 	// Je pose mon ancre sois sur une ligne sois sur une colonne
 	// Si c'est vertical -> on garde la colonne et ont prend en point de départ la ligne (X)
-	// Sinon on garde la ligne et on prend la colonne
+	// Sinon on garde la ligne et on prend la colonne (Y)
 	u_int _startCordinate = _isVertical ? _cordX : _cordY;
 	if (isOutOfBond(_ship,  _startCordinate)) return; // OutOfBound detected !
 
@@ -105,5 +105,5 @@ void Field::HitSpace()
 
 bool Field::isOutOfBond(Ship*& _ship, const u_int _cord) const
 {
-	return _cord + _ship->GetSpaceSize() >= fieldSize;
+	return _cord + _ship->GetSpaceSize() >= fieldSize || _cord < 0;
 }

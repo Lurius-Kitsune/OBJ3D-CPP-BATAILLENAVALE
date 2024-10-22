@@ -12,7 +12,7 @@ int main()
 
     Field* _fieldTest = new Field(10,10);
     Ship* _ship = new Ship("Porte-Avion", 5);
-    _fieldTest->PlaceShip(false, _ship, 0, 0);
+    _fieldTest->PlaceShip(true, _ship, 0, 9);
     _fieldTest->DisplayField();
     delete _ship;
     delete _fieldTest;
