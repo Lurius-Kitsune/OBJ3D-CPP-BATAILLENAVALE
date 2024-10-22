@@ -14,7 +14,7 @@ public:
 	void DisplayField();
 	void DisplayField(Field* _target);
 	void PlaceShip(const bool _isVertical, Ship*& _ship, const u_int& _cordX, const u_int& _cordY);
-	void HitSpace(const u_int& _y, const u_int& _x);
+	void SpaceHit(const u_int& _x, const u_int& _y);
 private:
 	bool isOutOfBond(Ship*& _ship, const u_int _cord) const;
 };

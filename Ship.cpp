@@ -28,7 +28,11 @@ bool Ship::IsAlive()
 
 void Ship::TakeADamage()
 {
-
+	damageTaken++;
+	if (damageTaken >= spaceSize)
+	{
+		isDead = true;
+	}
 }
 
 

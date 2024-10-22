@@ -97,11 +97,14 @@ void Field::PlaceShip(const bool _isVertical, Ship*& _ship, const u_int& _cordX,
 	
 }
 
-void Field::HitSpace(const u_int& _x, const u_int& _y)
+void Field::SpaceHit(const u_int& _x, const u_int& _y)
 {
+	if (spaces[_x][_y].GetIsTouched()) return;
+
 	if (spaces[_x][_y].isShipOnIt())
 	{
 		DISPLAY("TOUCHER", true);
+		spaces[_x][_y].GetProperty()->TakeADamage();
 	}
 
 	spaces[_x][_y].SetIsTouched(true);

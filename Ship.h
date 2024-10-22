@@ -22,7 +22,7 @@ public:
 	Ship(const string& _name, const int _spaceSize);
 public:
 	bool IsAlive();
-private:
 	void TakeADamage();
+private:
 };
 
