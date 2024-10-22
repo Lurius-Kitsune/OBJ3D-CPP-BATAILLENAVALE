@@ -16,7 +16,7 @@ public:
 	void PlaceShip(const bool _isVertical, Ship*& _ship, const u_int& _cordX, const u_int& _cordY);
 	void SpaceHit(const u_int& _x, const u_int& _y);
 private:
-	bool isShipCloseOrOn
 	bool isOutOfBond(Ship*& _ship, const u_int _cord) const;
+	bool isShipOnItAround(const int _cordX, const int _cordY, Ship*& _ship) const;
 };
 

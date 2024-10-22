@@ -22,6 +22,6 @@ void Game::LaunchGame()
 
 bool Game::isGameEnded()
 {
-
+	return false;
 }
 

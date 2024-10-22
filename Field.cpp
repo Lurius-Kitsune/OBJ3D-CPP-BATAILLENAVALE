@@ -78,23 +78,45 @@ void Field::PlaceShip(const bool _isVertical, Ship*& _ship, const u_int& _cordX,
 	if (isOutOfBond(_ship,  _startCordinate)) return; // OutOfBound detected !
 
 	// TODO
+	u_int _revertIndex = -1;
 	if (!_isVertical)
 	{
 		for (u_int _i = _startCordinate; _i < _ship->GetSpaceSize() + _startCordinate; _i++)
 		{
+			if (isShipOnItAround(_cordX, _i, _ship))
+			{
+				_revertIndex = _i;
+				break;
+			}
 			spaces[_cordX][_i].SetProperty(_ship);
+		}
+		if (_revertIndex != -1)
+		{
+			for (u_int _i = _revertIndex; _i > _startCordinate; _i--)
+			{
+				spaces[_cordX][_i].SetProperty(nullptr);
+			}
 		}
 	}
 	else
 	{
 		for (u_int _i = _startCordinate; _i < _ship->GetSpaceSize() + _startCordinate; _i++)
 		{
+			if (isShipOnItAround(_i, _cordY, _ship))
+			{
+				_revertIndex = _i;
+				break;
+			}
 			spaces[_i][_cordY].SetProperty(_ship);
 		}
+		if (_revertIndex != -1)
+		{
+			for (u_int _i = _revertIndex; _i > _startCordinate; _i--)
+			{
+				spaces[_i][_cordY].SetProperty(nullptr);
+			}
+		}
 	}
-	
-	
-	
 }
 
 void Field::SpaceHit(const u_int& _x, const u_int& _y)
@@ -112,4 +134,24 @@ void Field::SpaceHit(const u_int& _x, const u_int& _y)
 bool Field::isOutOfBond(Ship*& _ship, const u_int _cord) const
 {
 	return _cord + _ship->GetSpaceSize() >= fieldSize || _cord < 0;
+}
+
+bool Field::isShipOnItAround(const int _cordX, const int _cordY, Ship*& _ship) const
+{
+	// Retourne vrai si un bateau est autour de la case est que ce n'est pas lui meme
+
+	// Case de gauche
+	if (_cordX - 1 >= 0 && spaces[_cordX - 1][_cordY].isShipOnIt() && spaces[_cordX - 1][_cordY].GetProperty() != _ship) return true;
+
+	// Case de droite
+	if (_cordX + 1 < fieldSize && spaces[_cordX + 1][_cordY].isShipOnIt() && spaces[_cordX + 1][_cordY].GetProperty() != _ship) return true;
+
+	// Case du haut
+	if (_cordY - 1 >= 0 && spaces[_cordX][_cordY - 1].isShipOnIt() && spaces[_cordX][_cordY - 1].GetProperty() != _ship) return true;
+
+	// Case du bas
+	if (_cordY + 1 < fieldSize && spaces[_cordX][_cordY + 1].isShipOnIt() && spaces[_cordX][_cordY + 1].GetProperty() != _ship) return true;
+
+	return false;
+
 }
