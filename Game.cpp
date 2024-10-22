@@ -33,9 +33,9 @@ void Game::RetrieveCordAndShoot(Field*& _target)
 	bool _isCordValid = false;
 	while (!_isCordValid)
 	{
-		DISPLAY("Enter X cord: ", false);
+		DISPLAY("Cordonnée Horizontal: ", false);
 		cin >> _cordX;
-		DISPLAY("Enter Y cord: ", false);
+		DISPLAY("Cordonnée Vertical: ", false);
 		cin >> _cordY;
 		_isCordValid = _cordX >= 0 && _cordX < _target->GetFieldSize() && _cordY >= 0 && _cordY < _target->GetFieldSize();
 	}
