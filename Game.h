@@ -7,9 +7,11 @@ class Game
 
 public:
 	Game();
-	Game(Field* _player1Field, Field* _player2Field);
+	Game(const u_int& _fieldSize);
 public:
 	void LaunchGame();
+	void ShootOnField(Field*& _target, const u_int& _cordX, const u_int& _cordY);
+	void RetrieveCordAndShoot(Field*& _target);
 private:
 	bool isGameEnded();
 };

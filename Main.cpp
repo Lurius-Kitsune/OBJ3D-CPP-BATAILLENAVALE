@@ -9,13 +9,10 @@ int main()
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); // Detection de fuite de mémoire
 
     locale::global(locale("fr-FR")); // UTF8
+	Game* game = new Game(10);
+	game->LaunchGame();
 
-    Field* _fieldTest = new Field(10,10);
-    Ship* _ship = new Ship("Porte-Avion", 5);
-    Ship* _ship2 = new Ship("Porte-Avion", 5);
-    _fieldTest->PlaceShip(true, _ship, 0, 9);
-    _fieldTest->PlaceShip(true, _ship2, 1, 9);
-    _fieldTest->DisplayField();
+
     delete _ship;
     delete _fieldTest;
 }

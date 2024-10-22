@@ -8,6 +8,7 @@ class Field
 
 public:
 	Space** GetSpaces()const;
+	u_int GetFieldSize()const;
 	Field();
 	Field(const u_int _fieldSize, const u_int _maxShip);
 public:

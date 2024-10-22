@@ -5,6 +5,11 @@ Space** Field::GetSpaces() const
 	return spaces;
 }
 
+u_int Field::GetFieldSize() const
+{
+	return fieldSize;
+}
+
 Field::Field()
 {
 	spaces = nullptr;
@@ -42,7 +47,7 @@ void Field::DisplayField()
 		for (u_int _y = 0; _y < fieldSize; _y++)
 		{
 			Space _actualSpace = spaces[_x][_y];
-			const string _displayChar = (_actualSpace.isShipOnIt() ? "+" : "-");
+			const string _displayChar = (_actualSpace.isShipOnIt() ? _actualSpace.GetIsTouched() ? "X" : "+" : "-");
 			DISPLAY("\t" + _displayChar, false);
 		}
 		DISPLAY("", true);
