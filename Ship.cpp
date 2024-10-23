@@ -19,10 +19,7 @@ Ship::Ship(Ship* _ship)
 
 Ship::~Ship()
 {
-	for (u_int _index = 0; _index < size; _index++)
-	{
-		delete cordinatesArray[_index];
-	}
+	
 	delete[] cordinatesArray;
 }
 
