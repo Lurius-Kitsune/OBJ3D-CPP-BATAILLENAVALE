@@ -4,16 +4,24 @@ Player::Player(const string& _name, const u_int& _gridSize,
     ShipData* _shipData, const u_int& _shipDataCount)
 {
     name = _name;
-    ownGrid = Grid(_gridSize);
-    opponentGrid = Grid(_gridSize);
+    ownGrid = new Grid(_gridSize);
+    opponentGrid = new Grid(_gridSize);
     shipData = _shipData;
     shipDataCount = _shipDataCount;
+
+    this->Init();
+}
+
+Player::~Player()
+{
+    delete ownGrid;
+    delete opponentGrid;
 }
 
 void Player::Init()
 {
-    ownGrid.Init();
-    opponentGrid.Init();
+    ownGrid->Init();
+    opponentGrid->Init();
 
     // Pour chaque type de bateau
     for (u_int _index = 0; _index < shipDataCount; _index++)
@@ -22,7 +30,7 @@ void Player::Init()
         for (u_int _shipIndex = 0; _shipIndex < shipData[_index].count; _shipIndex++)
         {
             // Je place un bateau sur la grille
-            shipData[_index].ship.Setup(ownGrid, 10);
+            shipData[_index].ship.Setup(*ownGrid, 10);
         }
     }
 }
@@ -39,6 +47,11 @@ Cordinates Player::GetCoordsToAttack()
 
 bool Player::AnalyseAttack(const Cordinates& _coordsToAttack)
 {
-    return ownGrid.CheckAttack(_coordsToAttack);
+    return ownGrid->CheckAttack(_coordsToAttack);
+}
+
+void Player::DisplayOponnentGrid()
+{
+    opponentGrid->Display();
 }
 

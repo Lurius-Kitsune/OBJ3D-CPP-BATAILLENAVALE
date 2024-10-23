@@ -23,18 +23,19 @@ struct ShipData
 class Player
 {
     string name;
-	Grid ownGrid;
-	Grid opponentGrid;
+	Grid* ownGrid;
+	Grid* opponentGrid;
 	ShipData* shipData;
     u_int shipDataCount;
 
 public:
     Player() = default;
     Player(const string& _name, const u_int& _gridSize, ShipData* _shipData, const u_int& _shipDataCount);
-
+    ~Player();
 public:
     void Init();
     Cordinates GetCoordsToAttack();
     bool AnalyseAttack(const Cordinates& _coordsToAttack);
+    void DisplayOponnentGrid();
 };
 

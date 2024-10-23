@@ -26,15 +26,32 @@ void Grid::Init()
 
 void Grid::Display()
 {
+	DISPLAY(" ", false);
+	for (u_int _index = 0; _index < gridSize; _index++)
+	{
+		DISPLAY(" ", false);
+		DISPLAY(to_string(_index+1), false);
+	}
+
+	DISPLAY("", true);
 	for (u_int _rowIndex = 0; _rowIndex < gridSize; _rowIndex++)
 	{
+		DISPLAY(char('A' + _rowIndex), false);
 		for (u_int _columnIndex = 0; _columnIndex < gridSize; _columnIndex++)
 		{
 			DISPLAY(" ", false);
 			grid[_rowIndex][_columnIndex].Display();
 		}
-		DISPLAY(" ", true);
+		DISPLAY(" ", false);
+		DISPLAY(char('A' + _rowIndex), true);
 	}
+
+	for (u_int _index = 0; _index < gridSize; _index++)
+	{
+		DISPLAY(" ", false);
+		DISPLAY(to_string(_index + 1), false);
+	}
+	DISPLAY(" ", true);
 }
 
 bool Grid::CheckAttack(const Cordinates& _cordinate)
@@ -43,7 +60,7 @@ bool Grid::CheckAttack(const Cordinates& _cordinate)
 	{
 		for (u_int _columnIndex = 0; _columnIndex < gridSize; _columnIndex++)
 		{
-			bool _isSunk;
+			bool _isSunk = false;
 			if (grid[_rowIndex][_columnIndex].IsHit(_cordinate, _isSunk))
 			{
 				string _sunkText = _isSunk ? "et coulé " : " ";

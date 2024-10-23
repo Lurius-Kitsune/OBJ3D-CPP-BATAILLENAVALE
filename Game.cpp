@@ -15,9 +15,6 @@ Game::Game(const string& _namePlayer1, const string& _namePlayer2)
     const u_int& _shipDataCount = size(_shipData);
 	player1 = new Player(_namePlayer1, _gridSize, _shipData, _shipDataCount);
 	player2 = new Player(_namePlayer2, _gridSize, _shipData, _shipDataCount);
-
-    player1->Init();
-    player2->Init();
 }
 
 Game::~Game()
@@ -40,7 +37,7 @@ void Game::Launch()
         // Afin de faire 01 01 01 01 01 01 01 01 01 01 01 01 01 
         // CLOCK MODULO
         _otherPlayerIndex = (_playerIndex + 1) % _playersCount;
-
+        _players[_playerIndex]->DisplayOponnentGrid();
         const Cordinates& _coordsToAttack = _players[_playerIndex]->GetCoordsToAttack();
         _hasHit = _players[_otherPlayerIndex]->AnalyseAttack(_coordsToAttack);
 
