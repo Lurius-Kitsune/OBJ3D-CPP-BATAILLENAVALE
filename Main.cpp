@@ -62,7 +62,7 @@ int main()
         for (u_int _shipIndex = 0; _shipIndex < _shipData[_index].count; _shipIndex++)
         {
             // Je place un bateau sur la grille
-            _shipData[_index].ship.Setup(_grid);
+            _shipData[_index].ship.Setup(_grid, 10);
         }
     }
     _grid.Display();

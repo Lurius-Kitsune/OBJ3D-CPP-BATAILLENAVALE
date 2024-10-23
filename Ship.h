@@ -36,7 +36,7 @@ public:
 
 public:
 	bool AddHit();
-	void Setup(const Grid& _grid);
+	void Setup(const Grid& _grid, const u_int& _tryCount);
 	bool IsHit(const Cordinates& _attackLocation);
 
 private:

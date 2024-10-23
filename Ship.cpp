@@ -20,17 +20,23 @@ bool Ship::AddHit()
 	return hitsCount >= size;
 }
 
-void Ship::Setup(const Grid& _grid)
+void Ship::Setup(const Grid& _grid, const u_int& _tryCount)
 {
 	Cordinates _startCords;
 
 	const u_int& _startDirectionIndex = GetRandomNumberInRange(DT_COUNT);
 
+	u_int _currentTryIndex = 0;
+
 	bool _isSet = false;
 	do
 	{
 		// Je cherche à établir une nouvelle cordonnée
-		if (!CheckStartCords(_startCords ,_grid, 0)) continue;
+		if (!CheckStartCords(_startCords, _grid, 0))
+		{
+			_currentTryIndex++;
+			continue;
+		}
 
 		// tester s'il la case est libre 
 		// Pour chaque direction
@@ -45,6 +51,7 @@ void Ship::Setup(const Grid& _grid)
 				if (!CheckNextCords(_startCords, _grid, _index + 1, DirectionType(_finalDirection)))
 				{
 					_isValidDirection = false;
+					_currentTryIndex++;
 					continue;
 				}
 
@@ -56,13 +63,25 @@ void Ship::Setup(const Grid& _grid)
 				}
 			}
 		}
-	} while (!_isSet);
+	} while (!_isSet && _currentTryIndex < _tryCount);
 
-	// J'ajoute le bateau aux case qui contienne les cordonnée !
-	for (size_t _index = 0; _index < size; _index++)
+	if (_currentTryIndex < _tryCount)
 	{
-		_grid.GetTile(cordinatesArray[_index])->SetShip(this);
+		// J'ajoute le bateau aux case qui contienne les cordonnée !
+		for (size_t _index = 0; _index < size; _index++)
+		{
+			_grid.GetTile(cordinatesArray[_index])->SetShip(this);
+		}
 	}
+	else
+	{
+		DISPLAY("Bateau non posé !", true);
+		for (u_int _i = 0; _i < size; _i++)
+		{
+			cordinatesArray[_i] = {};
+		}
+	}
+	
 }
 
 bool Ship::IsHit(const Cordinates& _attackLocation)
