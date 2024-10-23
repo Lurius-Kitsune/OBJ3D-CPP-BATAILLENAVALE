@@ -18,6 +18,7 @@ public:
 		return gridSize;
 	}
 
+	Grid() = default;
 	Grid(const u_int _gridSize);
 	~Grid();
 

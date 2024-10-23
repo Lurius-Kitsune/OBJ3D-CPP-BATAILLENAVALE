@@ -31,6 +31,7 @@ public:
 		return hitsCount;
 	}
 
+	Ship() = default;
 	Ship(const char _appearance, const u_int& _size);
 	~Ship();
 
