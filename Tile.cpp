@@ -8,10 +8,6 @@ Tile::Tile(const Cordinates& _cordinates)
 	isHit = false;
 }
 
-void Tile::AddShip(Ship* _ship)
-{
-	ship = _ship;
-}
 
 bool Tile::IsHit(const Cordinates& _attackLocation, bool& _isSunk)
 {
