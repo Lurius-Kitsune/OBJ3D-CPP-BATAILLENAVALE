@@ -23,6 +23,9 @@ bool Ship::AddHit()
 void Ship::Setup(const Grid& _grid)
 {
 	Cordinates _startCords;
+
+	const u_int& _startDirectionIndex = GetRandomNumberInRange(DT_COUNT);
+
 	bool _isSet = false;
 	do
 	{
@@ -31,15 +34,15 @@ void Ship::Setup(const Grid& _grid)
 
 		// tester s'il la case est libre 
 		// Pour chaque direction
-		for (u_int _directionIndex = 0; _directionIndex < DT_COUNT; _directionIndex++)
+		for (u_int _directionIndex = _startDirectionIndex; !_isSet && _directionIndex < DT_COUNT + _startDirectionIndex; _directionIndex++)
 		{
-
+			const u_int& _finalDirection = _directionIndex > DT_COUNT ? 0 : _directionIndex;
 			bool _isValidDirection = true;
 
 			// Pour toute la taille du bateau
 			for (u_int _index = 0; _index < size - 1; _index++)
 			{
-				if (!CheckNextCords(_startCords, _grid, _index + 1, DirectionType(_directionIndex)))
+				if (!CheckNextCords(_startCords, _grid, _index + 1, DirectionType(_finalDirection)))
 				{
 					_isValidDirection = false;
 					continue;
@@ -49,6 +52,7 @@ void Ship::Setup(const Grid& _grid)
 				if (_index == size - 2)
 				{
 					_isSet = true;
+					break;
 				}
 			}
 		}
