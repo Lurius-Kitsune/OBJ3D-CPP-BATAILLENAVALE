@@ -29,14 +29,43 @@ int main()
     Grid _grid = Grid(10);
     _grid.Init();
 
-    Ship _ship[] =
+    enum ShipType
     {
-        Ship('1', 5),
-        Ship('2', 4),
-        Ship('3', 3),
-        Ship('4', 3),
-        Ship('5', 2),
+        PATROLER = 2,
+        SUBMARINE = 3,
+        DESTROYER = 3,
+        CRUISER = 4,
+        AIRCRAFT_CARRIER = 5,
+
+        ST_COUNT
     };
+
+    struct ShipData
+    {
+        u_int count;
+        Ship ship;
+    };
+
+    ShipData _shipData[] =
+    {
+        { 1, Ship('1', AIRCRAFT_CARRIER) },
+        { 1, Ship('2', CRUISER)},
+        { 1, Ship('3', DESTROYER)},
+        { 1, Ship('4', SUBMARINE)},
+        { 1, Ship('5', PATROLER)},
+    };
+
+    // Pour chaque type de bateau
+    for (u_int _index = 0; _index < size(_shipData); _index++)
+    {
+        // Pour chaque meme type de bateau
+        for (u_int _shipIndex = 0; _shipIndex < _shipData[_index].count; _shipIndex++)
+        {
+            // Je place un bateau sur la grille
+            _shipData[_index].ship.Setup(_grid);
+        }
+    }
+    
 
     return EXIT_SUCCESS;
 }
