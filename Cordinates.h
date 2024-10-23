@@ -17,6 +17,14 @@ struct Cordinates
 			&& y == _other.y;
 	}
 
+	Cordinates() = default;
+
+	Cordinates(const u_int& _x, const u_int& _y)
+	{
+		x = _x;
+		y = _y;
+	}
+
 	/// <summary>
 	/// Donne une instance de cordinate Random
 	/// </summary>

@@ -5,7 +5,7 @@ Ship::Ship(const char _appearance, const u_int& _size)
 {
 	appearance = _appearance;
 	size = _size;
-	cordinatesArray = nullptr;
+	cordinatesArray = new Cordinates[size];
 	hitsCount = 0;
 }
 
@@ -22,49 +22,41 @@ bool Ship::AddHit()
 
 void Ship::Setup(const Grid& _grid)
 {
+	Cordinates _startCords;
+	bool _isSet = false;
 	do
 	{
-		const Cordinates& _startCoords = Cordinates::GetRandom(1, _grid.GetGridSize());
-
-		if (!_grid.GetTile().IsAvailableAtCords(_startCoords)) continue;
+		// Je cherche à établir une nouvelle cordonnée
+		if (!CheckStartCords(_startCords ,_grid, 0)) continue;
 
 		// tester s'il la case est libre 
-
-		// placer à droite
-		for (u_int _index = 0; _index < size-1; _index++)
+		// Pour chaque direction
+		for (u_int _directionIndex = 0; _directionIndex < DT_COUNT; _directionIndex++)
 		{
-			const Cordinates& _nextCords = { _startCoords.x + _index, _startCoords.y };
-			if (!_grid.GetTile().IsAvailableAtCords(_nextCords)) break;
-			cordinatesArray[_index + 1] = _nextCords;
-			if (_index == size - 2)
+
+			bool _isValidDirection = true;
+
+			// Pour toute la taille du bateau
+			for (u_int _index = 0; _index < size - 1; _index++)
 			{
-				//TODO func
-				//cordinatesArray[]
-				return;
+				if (!CheckNextCords(_startCords, _grid, _index + 1, DirectionType(_directionIndex)))
+				{
+					_isValidDirection = false;
+					continue;
+				}
+
+				// Si le bateau est entiérement posé alors on quitte !
+				if (_index == size - 2)
+				{
+					_isSet = true;
+				}
 			}
 		}
+	} while (!_isSet);
 
-		// placer à gauche
-		for (u_int _index = 0; _index < size - 1; _index++)
-		{
-			const Cordinates& _nextCords = { _startCoords.x - _index, _startCoords.y };
-			if (!_grid.GetTile().IsAvailableAtCords(_nextCords)) break;
-		}
+	// J'ajoute le bateau aux case qui contienne les cordonnée !
 
-		// placer à en bas
-		for (u_int _index = 0; _index < size - 1; _index++)
-		{
-			const Cordinates& _nextCords = { _startCoords.x , _startCoords.y + _index };
-			if (!_grid.GetTile().IsAvailableAtCords(_nextCords)) break;
-		}
-
-		// placer en haut
-		for (u_int _index = 0; _index < size - 1; _index++)
-		{
-			const Cordinates& _nextCords = { _startCoords.x, _startCoords.y - _index };
-			if (!_grid.GetTile().IsAvailableAtCords(_nextCords)) break;
-		}
-	} while (true);
+	// _grid.GetTile(_startCords).SetShip(this);
 }
 
 bool Ship::IsHit(const Cordinates& _attackLocation)
@@ -76,4 +68,46 @@ bool Ship::IsHit(const Cordinates& _attackLocation)
 	}
 
 	return false;
+}
+
+bool Ship::CheckCords(const Cordinates& _cords, const Grid& _grid, const u_int& _index)
+{
+	Tile* _tile = _grid.GetTile(_cords);
+	if (!_tile || !_tile->IsAvailable()) return false;
+
+	cordinatesArray[_index] = _cords;
+
+	return false;
+}
+
+bool Ship::CheckStartCords(Cordinates& _cords, const Grid& _grid, const u_int _index)
+{
+	// On génére une nouvelle cordonner
+	_cords = Cordinates::GetRandom(_grid.GetGridSize(), 1);
+	return CheckCords(_cords, _grid, _index);
+}
+
+bool Ship::CheckNextCords(const Cordinates& _startCords, const Grid& _grid, const u_int _index, const DirectionType& _direction)
+{
+	// On génére une nouvelle cordonner
+	const Cordinates _cords = ComputeNextCords(_startCords, _index, _direction);
+
+	return CheckCords(_cords, _grid, _index);
+}
+
+Cordinates Ship::ComputeNextCords(const Cordinates& _startCords, const u_int _index, const DirectionType& _direction)
+{
+	switch (_direction)
+	{
+	case DT_RIGHT:
+		return Cordinates( _startCords.x + _index, _startCords.y );
+	case DT_LEFT:
+		return Cordinates(_startCords.x - _index, _startCords.y);
+	case DT_UP:
+		return Cordinates(_startCords.x , _startCords.y - _index);
+	case DT_DOWN:
+		return Cordinates(_startCords.x , _startCords.y + _index);
+	default:
+		break;
+	}
 }

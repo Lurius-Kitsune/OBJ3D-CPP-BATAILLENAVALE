@@ -3,7 +3,7 @@
 Grid::Grid(const u_int _gridSize)
 {
 	gridSize = _gridSize;
-	grid = nullptr;
+	grid = new Tile*[gridSize];
 	// On peut initialiser ici mais cest mauvais ( on sera en 2 eme année
 }
 
@@ -21,6 +21,19 @@ void Grid::Init()
 		{
 			grid[_rowIndex][_columnIndex] = Tile({ _rowIndex, _columnIndex });
 		}
+	}
+}
+
+void Grid::Display()
+{
+	for (u_int _rowIndex = 0; _rowIndex < gridSize; _rowIndex++)
+	{
+		for (u_int _columnIndex = 0; _columnIndex < gridSize; _columnIndex++)
+		{
+			DISPLAY(" ", false);
+			grid[_rowIndex][_columnIndex].Display();
+		}
+		DISPLAY(" ", true);
 	}
 }
 

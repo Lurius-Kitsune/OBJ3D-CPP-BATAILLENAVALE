@@ -9,6 +9,16 @@ class Tile
 	bool isHit;
 
 public:
+	void SetShip(Ship* _ship)
+	{
+		ship = _ship;
+	}
+
+	bool IsAvailable()const
+	{
+		return !ship;
+	}
+
 	Tile() = default;
 	Tile(const Cordinates& _cordinates);
 public:

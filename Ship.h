@@ -3,6 +3,16 @@
 
 class Grid;
 
+enum DirectionType
+{
+	DT_RIGHT,
+	DT_LEFT,
+	DT_DOWN,
+	DT_UP,
+	
+	DT_COUNT
+};
+
 class Ship
 {
 	char appearance;
@@ -30,5 +40,9 @@ public:
 	bool IsHit(const Cordinates& _attackLocation);
 
 private:
+	bool CheckCords(const Cordinates& _cords, const Grid& _grid, const u_int& _index);
+	bool CheckStartCords(Cordinates& _cords, const Grid& _grid, const u_int _index);
+	bool CheckNextCords(const Cordinates& _startCords, const Grid& _grid, const u_int _index, const DirectionType& _direction);
+	Cordinates ComputeNextCords(const Cordinates& _startCords, const u_int _index, const DirectionType& _direction);
 };
 
