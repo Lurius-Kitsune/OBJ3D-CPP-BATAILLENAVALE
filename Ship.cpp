@@ -5,12 +5,24 @@ Ship::Ship(const char _appearance, const u_int& _size)
 {
 	appearance = _appearance;
 	size = _size;
-	cordinatesArray = new Cordinates[size];
+	cordinatesArray = new Cordinates*[size];
 	hitsCount = 0;
+}
+
+Ship::Ship(Ship* _ship)
+{
+	appearance = _ship->appearance;
+	size = _ship->size;
+	cordinatesArray = new Cordinates * [size] {*_ship->cordinatesArray};
+	hitsCount = _ship->hitsCount;
 }
 
 Ship::~Ship()
 {
+	for (u_int _index = 0; _index < size; _index++)
+	{
+		delete cordinatesArray[_index];
+	}
 	delete[] cordinatesArray;
 }
 
@@ -22,7 +34,7 @@ bool Ship::AddHit()
 
 void Ship::Setup(const Grid& _grid, const u_int& _tryCount)
 {
-	Cordinates _startCords;
+	Cordinates* _startCords;
 
 	const u_int& _startDirectionIndex = GetRandomNumberInRange(DT_COUNT);
 
@@ -84,18 +96,18 @@ void Ship::Setup(const Grid& _grid, const u_int& _tryCount)
 	
 }
 
-bool Ship::IsHit(const Cordinates& _attackLocation)
+bool Ship::IsHit(const Cordinates* _attackLocation)
 {
 
 	for (u_int _index = 0; _index < size; _index++)
 	{
-		if (cordinatesArray[_index].IsSame(_attackLocation)) return true;
+		if (cordinatesArray[_index]->IsSame(_attackLocation)) return true;
 	}
 
 	return false;
 }
 
-bool Ship::CheckCords(const Cordinates& _cords, const Grid& _grid, const u_int& _index)
+bool Ship::CheckCords(Cordinates* _cords, const Grid& _grid, const u_int& _index)
 {
 	// On teste s'il la case est libre
 	Tile* _tile = _grid.GetTile(_cords);
@@ -107,33 +119,33 @@ bool Ship::CheckCords(const Cordinates& _cords, const Grid& _grid, const u_int& 
 	return true;
 }
 
-bool Ship::CheckStartCords(Cordinates& _cords, const Grid& _grid, const u_int _index)
+bool Ship::CheckStartCords(Cordinates*& _cords, const Grid& _grid, const u_int _index)
 {
 	// On génére une nouvelle cordonner
 	_cords = Cordinates::GetRandom(_grid.GetGridSize(), 1);
 	return CheckCords(_cords, _grid, _index);
 }
 
-bool Ship::CheckNextCords(const Cordinates& _startCords, const Grid& _grid, const u_int _index, const DirectionType& _direction)
+bool Ship::CheckNextCords(Cordinates* _startCords, const Grid& _grid, const u_int _index, const DirectionType& _direction)
 {
 	// On calcule la coordonnée suivante dans la direction donnée
-	const Cordinates _cords = ComputeNextCords(_startCords, _index, _direction);
+	Cordinates* _cords = ComputeNextCords(_startCords, _index, _direction);
 
 	return CheckCords(_cords, _grid, _index);
 }
 
-Cordinates Ship::ComputeNextCords(const Cordinates& _startCords, const u_int _index, const DirectionType& _direction)
+Cordinates* Ship::ComputeNextCords(const Cordinates* _startCords, const u_int _index, const DirectionType& _direction)
 {
 	switch (_direction)
 	{
 	case DT_RIGHT:
-		return Cordinates( _startCords.x + _index, _startCords.y );
+		return new Cordinates( _startCords->x + _index, _startCords->y );
 	case DT_LEFT:
-		return Cordinates(_startCords.x - _index, _startCords.y);
+		return new Cordinates(_startCords->x - _index, _startCords->y);
 	case DT_DOWN:
-		return Cordinates(_startCords.x , _startCords.y + _index);
+		return new Cordinates(_startCords->x , _startCords->y + _index);
 	case DT_UP:
-		return Cordinates(_startCords.x , _startCords.y - _index);
+		return new Cordinates(_startCords->x , _startCords->y - _index);
 	default:
 		break;
 	}

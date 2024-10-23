@@ -9,17 +9,17 @@ Tile::Tile(const Cordinates& _cordinates)
 }
 
 
-bool Tile::IsHit(const Cordinates& _attackLocation, bool& _isSunk)
+bool Tile::IsHit(const Cordinates* _attackLocation, bool& _isSunk)
 {
 	
 	isHit = cordinates.IsSame(_attackLocation);
-
+	
 	if (ship && isHit)
 	{
 		_isSunk = ship->AddHit();
 	}
 
-	return isHit;
+	return ship && isHit;
 }
 
 void Tile::Display()

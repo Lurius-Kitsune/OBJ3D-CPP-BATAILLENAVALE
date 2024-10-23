@@ -54,7 +54,7 @@ void Grid::Display()
 	DISPLAY(" ", true);
 }
 
-bool Grid::CheckAttack(const Cordinates& _cordinate)
+bool Grid::CheckAttack(const Cordinates* _cordinate)
 {
 	for (u_int _rowIndex = 0; _rowIndex < gridSize; _rowIndex++)
 	{
@@ -64,7 +64,7 @@ bool Grid::CheckAttack(const Cordinates& _cordinate)
 			if (grid[_rowIndex][_columnIndex].IsHit(_cordinate, _isSunk))
 			{
 				string _sunkText = _isSunk ? "et coulé " : " ";
-				DISPLAY("Touché " + _sunkText + "à : " + _cordinate.ToString() + " !", true);
+				DISPLAY("Touché " + _sunkText + "à : " + _cordinate->ToString() + " !", true);
 				return true;
 			}
 		}

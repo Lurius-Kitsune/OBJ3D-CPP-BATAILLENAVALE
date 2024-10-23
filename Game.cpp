@@ -4,11 +4,11 @@ Game::Game(const string& _namePlayer1, const string& _namePlayer2)
 {
     ShipData _shipData[] =
     {
-        { 1, Ship('1', AIRCRAFT_CARRIER) },
-        { 1, Ship('2', CRUISER)},
-        { 1, Ship('3', DESTROYER)},
-        { 1, Ship('4', SUBMARINE)},
-        { 1, Ship('5', PATROLER)},
+        { 1, new Ship('1', AIRCRAFT_CARRIER) },
+        { 1, new Ship('2', CRUISER)},
+        { 1, new Ship('3', DESTROYER)},
+        { 1, new Ship('4', SUBMARINE)},
+        { 1, new Ship('5', PATROLER)},
     };
 
     const u_int& _gridSize = 10;
@@ -39,7 +39,7 @@ void Game::Launch()
         _otherPlayerIndex = (_playerIndex + 1) % _playersCount;
         _players[_playerIndex]->DisplayOponnentGrid();
         const Cordinates& _coordsToAttack = _players[_playerIndex]->GetCoordsToAttack();
-        _hasHit = _players[_otherPlayerIndex]->AnalyseAttack(_coordsToAttack);
+        _hasHit = _players[_otherPlayerIndex]->AnalyseAttack(&_coordsToAttack);
 
         if (_hasHit)
         {

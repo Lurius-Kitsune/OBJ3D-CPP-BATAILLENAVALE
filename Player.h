@@ -15,9 +15,14 @@ enum ShipType
 struct ShipData
 {
     u_int count;
-    Ship ship;
+    Ship* ship;
 
     ShipData() = default;
+
+    ~ShipData()
+    {
+        delete ship;
+    };
 };
 
 class Player
@@ -35,7 +40,7 @@ public:
 public:
     void Init();
     Cordinates GetCoordsToAttack();
-    bool AnalyseAttack(const Cordinates& _coordsToAttack);
+    bool AnalyseAttack(const Cordinates* _coordsToAttack);
     void DisplayOponnentGrid();
 };
 

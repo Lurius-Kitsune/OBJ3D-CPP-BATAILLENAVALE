@@ -22,7 +22,7 @@ public:
 	Tile() = default;
 	Tile(const Cordinates& _cordinates);
 public:
-	bool IsHit(const Cordinates& _attackLocation, bool& _isSunk);
+	bool IsHit(const Cordinates* _attackLocation, bool& _isSunk);
 	void Display();
 };
 

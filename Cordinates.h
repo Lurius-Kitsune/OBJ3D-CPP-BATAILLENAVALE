@@ -11,10 +11,10 @@ struct Cordinates
 		return "X: " + to_string(x) + " - Y: " + to_string(y);
 	}
 
-	bool IsSame(const Cordinates& _other)const
+	bool IsSame(const Cordinates* _other)const
 	{
-		return x == _other.x
-			&& y == _other.y;
+		return x == _other->x
+			&& y == _other->y;
 	}
 
 	Cordinates() = default;
@@ -31,11 +31,11 @@ struct Cordinates
 	/// <param name="_min">Valeur minimum</param>
 	/// <param name="_max">Valeur Max</param>
 	/// <returns>Instance de cordinate</returns>
-	static Cordinates GetRandom(const u_int& _min, const u_int _max)
+	static Cordinates* GetRandom(const u_int& _min, const u_int _max)
 	{
 		const u_int& _x = GetRandomNumberInRange(_min, _max);
 		const u_int& _y = GetRandomNumberInRange(_min, _max);
 
-		return { _x, _y };
+		return new Cordinates( _x, _y );
 	}
 };
