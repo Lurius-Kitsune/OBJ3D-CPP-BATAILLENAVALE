@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{042b6bfd-a4e1-4f64-b0f9-edfde64e6e19}</ProjectGuid>
-    <RootNamespace>BatailleNavale</RootNamespace>
+    <ProjectGuid>{a8b8e44a-6438-42cd-ac3b-6a6e7c65c628}</ProjectGuid>
+    <RootNamespace>CorrectionBatailleNavale</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,21 +127,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Field.cpp" />
-    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Marker.h" />
     <ClCompile Include="Ship.cpp" />
-    <ClCompile Include="Space.cpp" />
+    <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Field.h" />
-    <ClInclude Include="Game.h" />
+    <ClInclude Include="Cordinates.h" />
+    <ClInclude Include="Grid.h" />
     <ClInclude Include="Macro.h" />
-    <ClInclude Include="MacroConsole.h" />
-    <ClInclude Include="Main.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="Ship.h" />
-    <ClInclude Include="Space.h" />
-    <ClInclude Include="StringObject.h" />
+    <ClInclude Include="Tile.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="BatailleNavale.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

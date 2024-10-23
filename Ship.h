@@ -1,28 +1,34 @@
 #pragma once
-#include <iostream>
-#include <string>
-#include "Macro.h"     
+#include "Cordinates.h"
 
-using namespace std;
-
-typedef unsigned int u_int;
+class Grid;
 
 class Ship
 {
-	string name;
-	u_int spaceSize;
-	u_int damageTaken;
-	bool isDead;
+	char appearance;
+	u_int size;
+	Cordinates* cordinatesArray;
+	u_int hitsCount;
 
 public:
-	u_int GetSpaceSize();
+	char GetAppearance() const
+	{
+		return appearance;
+	}
 
-	Ship();
+	u_int GetHitPartCount() const
+	{
+		return hitsCount;
+	}
 
-	Ship(const string& _name, const int _spaceSize);
+	Ship(const char _appearance, const u_int& _size);
+	~Ship();
+
 public:
-	bool IsDead();
-	void TakeADamage();
+	bool AddHit();
+
 private:
+	void Setup(const Grid& _grid);
+	bool IsHit(const Cordinates& _attackLocation);
 };
 

@@ -1,0 +1,40 @@
+Objectif du jeu
+Le but est de couler tous les navires de l'adversaire avant que ses navires ne soient coulés.
+
+Matériel
+Une grille de 10x10 cases pour chaque joueur (A-J pour les colonnes et 1-10 pour les lignes).
+Des navires de différentes tailles à placer sur la grille.
+Un système de marqueurs (p. ex. un crayon et du papier, des pions, etc.) pour indiquer les frappes.
+
+Configuration du jeu
+Placement des navires :
+Chaque joueur place ses navires sur sa grille en cachant leur position à l'adversaire. Les navires peuvent être placés horizontalement ou verticalement, mais pas en diagonale.
+Les tailles de navires courantes sont :
+1 porte-avions (5 cases)
+1 croiseur (4 cases)
+1 destroyer (3 cases)
+2 sous-marins (3 cases)
+1 patrouilleur (2 cases)
+
+Les navires ne peuvent pas se chevaucher ni toucher d'autres navires.
+
+Déroulement du jeu
+Tour de jeu :
+Les joueurs s'alternent pour appeler une case en indiquant une lettre (A-J) et un chiffre (1-10).
+L’adversaire annonce si c’est un "touché" ou un "manqué".
+
+Marquage :
+Les joueurs marquent leur grille pour indiquer où ils ont tiré et les résultats (touchés ou manqués).
+Les frappes peuvent être indiquées par des symboles (par exemple, "X" pour un touché, "O" pour un manqué).
+
+
+Coulage :
+Lorsqu'un navire est entièrement touché, l'adversaire doit le déclarer comme coulé en annonçant le nom du navire (p. ex. "mon croiseur est coulé").
+
+Fin du jeu
+Le jeu se termine lorsqu'un joueur a coulé tous les navires de son adversaire.
+Le joueur qui réussit à couler tous les navires de l'autre remporte la partie.
+
+Variantes (optionnelles)
+Navires supplémentaires : Ajouter d'autres types de navires ou varier les tailles.
+Tirs spéciaux : Autoriser des tirs spéciaux pour marquer plusieurs cases en un seul tour.

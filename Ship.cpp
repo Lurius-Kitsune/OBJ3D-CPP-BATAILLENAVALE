@@ -1,38 +1,40 @@
 #include "Ship.h"
+#include "Grid.h"
 
-u_int Ship::GetSpaceSize()
+Ship::Ship(const char _appearance, const u_int& _size)
 {
-	return spaceSize;
+	appearance = _appearance;
+	size = _size;
+	cordinatesArray = nullptr;
+	hitsCount = 0;
 }
 
-Ship::Ship()
+Ship::~Ship()
 {
-	name = "Unknown";
-	spaceSize = 0;
-	damageTaken = 0;
-	isDead = true;
+	delete[] cordinatesArray;
 }
 
-Ship::Ship(const string& _name, const int _spaceSize)
+bool Ship::AddHit()
 {
-	name = _name;
-	spaceSize = _spaceSize;
-	damageTaken = 0;
-	isDead = 0;
+	hitsCount++;
+	return hitsCount >= size;
 }
 
-bool Ship::IsDead()
+void Ship::Setup(const Grid& _grid)
 {
-	return isDead;
-}
-
-void Ship::TakeADamage()
-{
-	damageTaken++;
-	if (damageTaken >= spaceSize)
+	do
 	{
-		isDead = true;
-	}
+		const Cordinates& _cordinates = Cordinates::GetRandom(1, _grid.GetGridSize());
+	} while (true);
 }
 
+bool Ship::IsHit(const Cordinates& _attackLocation)
+{
 
+	for (u_int _index = 0; _index < size; _index++)
+	{
+		if (cordinatesArray[_index].IsSame(_attackLocation)) return true;
+	}
+
+	return false;
+}

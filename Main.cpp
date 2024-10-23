@@ -1,18 +1,42 @@
-// File : Main.cpp
-#include "Main.h"
+#include "Macro.h"
+#include "Grid.h"
+// Les classe à crée 
+// Ship
+    // Grid
+    // Position
+    // Player
+    // Game
+    // Marker
+    // Missile
+    // Tile
 
-#pragma region Struct
-#pragma endregion
+// feature
+// Menu déroulant début du jeu - Game
+// Définition de la grille - Grid
+//Etablissement des bateaux sur la grille - Grid
+// Systeme de jeu tour par tour - Game
+// Menu sélection joueurs - Game
+// 
+// Choix de la position du tir - Player qui attaque
+// Systeme de marquage - Marker
+// System toucher couler - Player qui se fait attaquer
+// Déterminer la fin de la partie - Game
+
+// Game -> 2 joueur -> Grille -> Case -> Bateau ou marqueur -> Position
 
 int main()
 {
-    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); // Detection de fuite de mémoire
+    Grid _grid = Grid(10);
+    _grid.Init();
 
-    locale::global(locale("fr-FR")); // UTF8
-	Game* game = new Game(10);
-	game->LaunchGame();
+    Ship _ship[] =
+    {
+        Ship('1', 5),
+        Ship('2', 4),
+        Ship('3', 3),
+        Ship('4', 3),
+        Ship('5', 2),
+    };
 
-
-    delete _ship;
-    delete _fieldTest;
+    return EXIT_SUCCESS;
 }
