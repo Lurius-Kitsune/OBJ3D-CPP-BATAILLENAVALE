@@ -55,8 +55,10 @@ void Ship::Setup(const Grid& _grid)
 	} while (!_isSet);
 
 	// J'ajoute le bateau aux case qui contienne les cordonnée !
-
-	// _grid.GetTile(_startCords).SetShip(this);
+	for (size_t _index = 0; _index < size; _index++)
+	{
+		_grid.GetTile(cordinatesArray[_index])->AddShip(this);
+	}
 }
 
 bool Ship::IsHit(const Cordinates& _attackLocation)
@@ -77,7 +79,7 @@ bool Ship::CheckCords(const Cordinates& _cords, const Grid& _grid, const u_int& 
 
 	cordinatesArray[_index] = _cords;
 
-	return false;
+	return true;
 }
 
 bool Ship::CheckStartCords(Cordinates& _cords, const Grid& _grid, const u_int _index)

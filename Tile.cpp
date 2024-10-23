@@ -31,5 +31,6 @@ void Tile::Display()
 	// Mettre en rouge si c'est toucher !
 	// bleu si c'est de l'eau
 	// sinon blanc
-	DISPLAY(!ship ? '~' : ship->GetAppearance(), true);
+	DISPLAY((!ship ? '~' : ship->GetAppearance()), false);
+	//DISPLAY("~", false);
 }

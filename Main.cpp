@@ -65,6 +65,7 @@ int main()
             _shipData[_index].ship.Setup(_grid);
         }
     }
+    _grid.Display();
     
 
     return EXIT_SUCCESS;
