@@ -35,6 +35,6 @@ public:
 public:
     void Init();
     Cordinates GetCoordsToAttack();
-    bool Attack(const Cordinates& _coordsToAttack);
+    bool AnalyseAttack(const Cordinates& _coordsToAttack);
 };
 

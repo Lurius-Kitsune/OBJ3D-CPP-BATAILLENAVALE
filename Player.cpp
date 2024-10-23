@@ -37,7 +37,7 @@ Cordinates Player::GetCoordsToAttack()
     return Cordinates( _posX, _posY );
 }
 
-bool Player::Attack(const Cordinates& _coordsToAttack)
+bool Player::AnalyseAttack(const Cordinates& _coordsToAttack)
 {
     return ownGrid.CheckAttack(_coordsToAttack);
 }

@@ -13,15 +13,24 @@ Game::Game(const string& _namePlayer1, const string& _namePlayer2)
 
     const u_int& _gridSize = 10;
     const u_int& _shipDataCount = size(_shipData);
-	player1 = Player(_namePlayer1, _gridSize, _shipData, _shipDataCount);
-	player2 = Player(_namePlayer2, _gridSize, _shipData, _shipDataCount);
+	player1 = new Player(_namePlayer1, _gridSize, _shipData, _shipDataCount);
+	player2 = new Player(_namePlayer2, _gridSize, _shipData, _shipDataCount);
+
+    player1->Init();
+    player2->Init();
+}
+
+Game::~Game()
+{
+    delete player1;
+    delete player2;
 }
 
 void Game::Launch()
 {
     bool _hasHit;
 
-    Player _players[] = {player1, player2};
+    Player* _players[] = {player1, player2};
     const u_int _playersCount = size(_players);
     u_int _playerIndex = GetRandomNumberInRange(_playersCount,1)-1;
     u_int _otherPlayerIndex;
@@ -32,8 +41,8 @@ void Game::Launch()
         // CLOCK MODULO
         _otherPlayerIndex = (_playerIndex + 1) % _playersCount;
 
-        const Cordinates& _coordsToAttack = _players[_playerIndex].GetCoordsToAttack();
-        _hasHit = _players[_otherPlayerIndex].Attack(_coordsToAttack);
+        const Cordinates& _coordsToAttack = _players[_playerIndex]->GetCoordsToAttack();
+        _hasHit = _players[_otherPlayerIndex]->AnalyseAttack(_coordsToAttack);
 
         if (_hasHit)
         {
