@@ -24,7 +24,46 @@ void Ship::Setup(const Grid& _grid)
 {
 	do
 	{
-		const Cordinates& _cordinates = Cordinates::GetRandom(1, _grid.GetGridSize());
+		const Cordinates& _startCoords = Cordinates::GetRandom(1, _grid.GetGridSize());
+
+		if (!_grid.GetTile().IsAvailableAtCords(_startCoords)) continue;
+
+		// tester s'il la case est libre 
+
+		// placer à droite
+		for (u_int _index = 0; _index < size-1; _index++)
+		{
+			const Cordinates& _nextCords = { _startCoords.x + _index, _startCoords.y };
+			if (!_grid.GetTile().IsAvailableAtCords(_nextCords)) break;
+			cordinatesArray[_index + 1] = _nextCords;
+			if (_index == size - 2)
+			{
+				//TODO func
+				//cordinatesArray[]
+				return;
+			}
+		}
+
+		// placer à gauche
+		for (u_int _index = 0; _index < size - 1; _index++)
+		{
+			const Cordinates& _nextCords = { _startCoords.x - _index, _startCoords.y };
+			if (!_grid.GetTile().IsAvailableAtCords(_nextCords)) break;
+		}
+
+		// placer à en bas
+		for (u_int _index = 0; _index < size - 1; _index++)
+		{
+			const Cordinates& _nextCords = { _startCoords.x , _startCoords.y + _index };
+			if (!_grid.GetTile().IsAvailableAtCords(_nextCords)) break;
+		}
+
+		// placer en haut
+		for (u_int _index = 0; _index < size - 1; _index++)
+		{
+			const Cordinates& _nextCords = { _startCoords.x, _startCoords.y - _index };
+			if (!_grid.GetTile().IsAvailableAtCords(_nextCords)) break;
+		}
 	} while (true);
 }
 

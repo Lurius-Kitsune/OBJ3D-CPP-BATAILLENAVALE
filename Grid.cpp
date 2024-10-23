@@ -1,13 +1,13 @@
 #include "Grid.h"
 
-inline Grid::Grid(const u_int _gridSize)
+Grid::Grid(const u_int _gridSize)
 {
 	gridSize = _gridSize;
 	grid = nullptr;
 	// On peut initialiser ici mais cest mauvais ( on sera en 2 eme année
 }
 
-inline Grid::~Grid()
+Grid::~Grid()
 {
 	delete[] grid;
 }
