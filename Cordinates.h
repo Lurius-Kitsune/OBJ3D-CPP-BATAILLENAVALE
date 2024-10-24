@@ -8,7 +8,7 @@ struct Cordinates
 
 	string ToString() const
 	{
-		return "X: " + to_string(x) + " - Y: " + to_string(y);
+		return "X: " + to_string(char('A'+x + 1)) + " - Y: " + to_string(y + 1);
 	}
 
 	bool IsSame(const Cordinates* _other)const

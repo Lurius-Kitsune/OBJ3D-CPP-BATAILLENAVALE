@@ -9,6 +9,7 @@ public:
 
 	void SetTile(const Cordinates& _cordinate, Tile _tile) const
 	{
+		_tile.SetIsOpponent(true);
 		grid[_cordinate.x][_cordinate.y] = _tile;
 	}
 

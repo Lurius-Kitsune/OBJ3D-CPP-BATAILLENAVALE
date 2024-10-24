@@ -16,6 +16,11 @@ public:
 		isHit = _hasHit;
 	}
 
+	void SetIsOpponent(const bool _hisOpponent)
+	{
+		isOpponent = _hisOpponent;
+	}
+
 	void SetShip(Ship* _ship)
 	{
 		ship = _ship;

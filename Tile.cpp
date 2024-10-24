@@ -28,8 +28,9 @@ void Tile::Display()
 	// Mettre en rouge si c'est toucher !
 	// bleu si c'est de l'eau
 	// sinon blanc
-	const string& _color = isHit ? ship ? RED : BLUE : WHITE;
+	const string& _color = isHit ? ship ? RED BLINK_TEXT : BLUE : WHITE;
 	const char _char = ship ? (isOpponent ? '#' : ship->GetAppearance()) : '~';
 	DISPLAY(_color + _char , false);
+	DISPLAY(RESET_BLINK RESET, false);
 	//DISPLAY("~", false);
 }

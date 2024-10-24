@@ -45,7 +45,7 @@ void Grid::Display()
 		DISPLAY(" ", false);
 		DISPLAY(char('A' + _rowIndex), true);
 	}
-
+	DISPLAY(" ", false);
 	for (u_int _index = 0; _index < gridSize; _index++)
 	{
 		DISPLAY(" ", false);
@@ -57,7 +57,7 @@ void Grid::Display()
 Tile* Grid::CheckAttack(const Cordinates* _cordinate)
 {
 	bool _isSunk = false;
-	Tile _tile = grid[_cordinate->x][_cordinate->y];
+	Tile& _tile = grid[_cordinate->x][_cordinate->y];
 	const bool _hasHit = _tile.IsHit(_isSunk);
 	
 	if (!_hasHit)
