@@ -1,4 +1,4 @@
-#include "Player.h"
+﻿#include "Player.h"
 
 Player::Player(const string& _name, const u_int& _gridSize,
     ShipData* _shipData, const u_int& _shipDataCount)
@@ -53,7 +53,15 @@ Cordinates Player::GetCoordsToAttack()
     char _posX;
 
     //TODO
-    DisplayOponnentGrid();
+    DISPLAY("→Ma grille", true);
+    ownGrid->Display();
+
+    SPACE;
+    DISPLAY_LINE;
+    SPACE;
+
+    DISPLAY("→Grille adverse", true);
+    opponentGrid->Display();
     DISPLAY("Tu veux attaquer ou ?", true);
     cin >> _posX >> _posY;
 
@@ -75,15 +83,5 @@ void Player::UpdateOpponentGrid(const Cordinates& _coordsToAttack, const Tile* _
     {
         opponentGrid->GetTile(&_coordsToAttack)->SetIsHit(true);
     }
-}
-
-void Player::DisplayMyGrid()
-{
-    ownGrid->Display();
-}
-
-void Player::DisplayOponnentGrid()
-{
-    opponentGrid->Display();
 }
 

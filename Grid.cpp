@@ -30,26 +30,33 @@ void Grid::Display()
 	for (u_int _index = 0; _index < gridSize; _index++)
 	{
 		DISPLAY(" ", false);
-		DISPLAY(to_string(_index+1), false);
+		DISPLAY(MAGENTA + to_string(_index+1) + RESET, false);
 	}
 
 	DISPLAY("", true);
 	for (u_int _rowIndex = 0; _rowIndex < gridSize; _rowIndex++)
 	{
-		DISPLAY(char('A' + _rowIndex), false);
+		DISPLAY(MAGENTA, false);
+		DISPLAY( char('A' + _rowIndex), false);
+		DISPLAY(RESET, false);
+
 		for (u_int _columnIndex = 0; _columnIndex < gridSize; _columnIndex++)
 		{
 			DISPLAY(" ", false);
 			grid[_rowIndex][_columnIndex].Display();
 		}
+
 		DISPLAY(" ", false);
-		DISPLAY(char('A' + _rowIndex), true);
+
+		DISPLAY(MAGENTA, false);
+		DISPLAY(char('A' + _rowIndex), false);
+		DISPLAY(RESET, true);
 	}
 	DISPLAY(" ", false);
 	for (u_int _index = 0; _index < gridSize; _index++)
 	{
 		DISPLAY(" ", false);
-		DISPLAY(to_string(_index + 1), false);
+		DISPLAY(MAGENTA + to_string(_index + 1) + RESET, false);
 	}
 	DISPLAY(" ", true);
 }

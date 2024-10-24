@@ -48,7 +48,5 @@ public:
     Cordinates GetCoordsToAttack();
     Tile* AnalyseAttack(const Cordinates* _coordsToAttack);
     void UpdateOpponentGrid(const Cordinates& _coordsToAttack, const Tile* _oponnentTile);
-    void DisplayMyGrid();
-    void DisplayOponnentGrid();
 };
 

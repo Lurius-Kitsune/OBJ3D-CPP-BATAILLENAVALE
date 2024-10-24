@@ -35,17 +35,13 @@ void Game::Launch()
     do
     {
         Player* _currentPlayer = _players[_playerIndex];
-        DISPLAY("►Au joueur " + _currentPlayer->GetName() + " de jouer !", true);
-        SPACE;
-        DISPLAY("►Ma grille", true);
-        _currentPlayer->DisplayMyGrid();
+        
 
         // Afin de faire 01 01 01 01 01 01 01 01 01 01 01 01 01 
         _otherPlayerIndex = (_playerIndex + 1) % _playersCount;
         // CLOCK MODULO
-
+        DISPLAY("→Au joueur " + _currentPlayer->GetName() + " de jouer !", true);
         SPACE;
-        DISPLAY("►Grille adverse", true);
         const Cordinates& _coordsToAttack = _currentPlayer->GetCoordsToAttack();
 
         CLEAR_SCREEN;

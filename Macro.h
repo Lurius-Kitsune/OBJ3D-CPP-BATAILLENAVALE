@@ -18,6 +18,7 @@ typedef unsigned int u_int;
 #define DISPLAY(_value, _makeEndl) cout << _value; \
                                    if (_makeEndl) cout << endl;
 #define SPACE DISPLAY("", true);
+#define DISPLAY_LINE DISPLAY("=========================", true);
 
 #define CLEAR_SCREEN system("cls");
 
