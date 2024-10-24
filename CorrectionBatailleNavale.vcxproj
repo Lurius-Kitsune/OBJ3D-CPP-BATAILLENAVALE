@@ -133,6 +133,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="UserInteraction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleColorMacro.h" />
@@ -144,6 +145,7 @@
     <ClInclude Include="Random.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="UserInteraction.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="BatailleNavale.txt" />
