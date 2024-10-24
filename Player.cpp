@@ -52,20 +52,21 @@ Cordinates Player::GetCoordsToAttack()
     
 
     //TODO
-    DISPLAY("Ma grille", true);
-    ownGrid->Display();
 
-    SPACE;
-    DISPLAY_LINE;
-    SPACE;
-
-    DISPLAY("Grille adverse", true);
-    opponentGrid->Display();
-    
 
     string _coordsText;
     do
     {
+        DISPLAY("Ma grille", true);
+        ownGrid->Display();
+
+        SPACE;
+        DISPLAY_LINE;
+        SPACE;
+
+        DISPLAY("Grille adverse", true);
+        opponentGrid->Display();
+
         DISPLAY("Tu veux attaquer ou ?", true);
         _coordsText = GetLine();
         if (_coordsText.size() != 2)

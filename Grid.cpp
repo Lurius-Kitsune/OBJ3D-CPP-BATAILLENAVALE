@@ -46,18 +46,7 @@ void Grid::Display()
 			DISPLAY(" ", false);
 			grid[_rowIndex][_columnIndex].Display();
 		}
-
-		DISPLAY(" ", false);
-
-		DISPLAY(_color, false);
-		DISPLAY(char('A' + _rowIndex), false);
-		DISPLAY(RESET, true);
-	}
-	DISPLAY(" ", false);
-	for (u_int _index = 0; _index < gridSize; _index++)
-	{
-		DISPLAY(" ", false);
-		DISPLAY(_color + to_string(_index + 1) + RESET, false);
+		DISPLAY("", true);
 	}
 	DISPLAY(" ", true);
 }
