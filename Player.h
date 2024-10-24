@@ -17,7 +17,17 @@ struct ShipData
     u_int count;
     Ship* ship;
 
-    ShipData() = default;
+    ShipData()
+    {
+        count = 0;
+        ship = 0;
+    }
+
+    ShipData(const u_int _count, Ship* _ship)
+    {
+        count = _count;
+        ship = _ship;
+    }
 
     ~ShipData()
     {
@@ -48,5 +58,7 @@ public:
     Cordinates GetCoordsToAttack();
     Tile* AnalyseAttack(const Cordinates* _coordsToAttack);
     void UpdateOpponentGrid(const Cordinates& _coordsToAttack, const Tile* _oponnentTile);
+    bool IsOver();
+    void Display();
 };
 

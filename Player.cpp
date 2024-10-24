@@ -57,16 +57,7 @@ Cordinates Player::GetCoordsToAttack()
     string _coordsText;
     do
     {
-        DISPLAY("Ma grille", true);
-        ownGrid->Display();
-
-        SPACE;
-        DISPLAY_LINE;
-        SPACE;
-
-        DISPLAY("Grille adverse", true);
-        opponentGrid->Display();
-
+        Display();
         DISPLAY("Tu veux attaquer ou ?", true);
         _coordsText = GetLine();
         if (_coordsText.size() <  2)
@@ -102,5 +93,27 @@ void Player::UpdateOpponentGrid(const Cordinates& _coordsToAttack, const Tile* _
     {
         opponentGrid->GetTile(&_coordsToAttack)->SetIsHit(true);
     }
+}
+
+bool Player::IsOver()
+{
+    for (u_int _i = 0; _i < shipDataCount; _i++)
+    {
+        if (shipData[_i].ship && shipData[_i].ship->IsSunk()) return false;
+    }
+    return true;
+}
+
+void Player::Display()
+{
+    DISPLAY("Ma grille", true);
+    ownGrid->Display();
+
+    SPACE;
+    DISPLAY_LINE;
+    SPACE;
+
+    DISPLAY("Grille adverse", true);
+    opponentGrid->Display();
 }
 

@@ -4,11 +4,11 @@ Game::Game(const string& _namePlayer1, const string& _namePlayer2)
 {
     ShipData _shipData[] =
     {
-        { 1, new Ship('1', AIRCRAFT_CARRIER) },
-        { 1, new Ship('2', CRUISER)},
-        { 1, new Ship('3', DESTROYER)},
-        { 1, new Ship('4', SUBMARINE)},
-        { 1, new Ship('5', PATROLER)},
+        { 0, new Ship('1', AIRCRAFT_CARRIER) },
+        { 0, new Ship('2', CRUISER)},
+        { 0, new Ship('3', DESTROYER)},
+        { 0, new Ship('4', SUBMARINE)},
+        { 2, new Ship('5', PATROLER)},
     };
 
     const u_int& _gridSize = 10;
@@ -31,10 +31,12 @@ void Game::Launch()
     const u_int _playersCount = size(_players);
     u_int _playerIndex = GetRandomNumberInRange(_playersCount,1)-1;
     u_int _otherPlayerIndex;
+    Player* _currentPlayer;
+    Player* _otherPlayer;
 
     do
     {
-        Player* _currentPlayer = _players[_playerIndex];
+        _currentPlayer = _players[_playerIndex];
         
 
         // Afin de faire 01 01 01 01 01 01 01 01 01 01 01 01 01 
@@ -45,7 +47,8 @@ void Game::Launch()
         const Cordinates& _coordsToAttack = _currentPlayer->GetCoordsToAttack();
 
         CLEAR_SCREEN;
-        _opponentTile = _players[_otherPlayerIndex]->AnalyseAttack(&_coordsToAttack);
+        _otherPlayer = _players[_otherPlayerIndex];
+        _opponentTile = _otherPlayer->AnalyseAttack(&_coordsToAttack);
         _currentPlayer->UpdateOpponentGrid(_coordsToAttack, _opponentTile);
 
 
@@ -54,7 +57,10 @@ void Game::Launch()
             _playerIndex++;
             _playerIndex %= _playersCount;
         }
-    } while (true);
+    } while (_otherPlayer->IsOver());
+
+    _currentPlayer->Display();
+    DISPLAY(GREEN "LE GRAND GAGNANT EST " + _otherPlayer->GetName() + " BRAVO!" RESET, true);
 }
 
 
