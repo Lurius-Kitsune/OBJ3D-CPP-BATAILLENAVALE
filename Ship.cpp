@@ -103,6 +103,11 @@ bool Ship::IsHit(const Cordinates* _attackLocation)
 	return false;
 }
 
+bool Ship::IsSunk()
+{
+	return hitsCount >= size;
+}
+
 bool Ship::CheckCords(Cordinates* _cords, const Grid& _grid, const u_int& _index)
 {
 	// On teste s'il la case est libre

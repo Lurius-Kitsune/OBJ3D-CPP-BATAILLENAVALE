@@ -40,7 +40,7 @@ public:
 	bool AddHit();
 	void Setup(const Grid& _grid, const u_int& _tryCount);
 	bool IsHit(const Cordinates* _attackLocation);
-
+	bool IsSunk();
 private:
 	bool CheckCords(Cordinates* _cords, const Grid& _grid, const u_int& _index);
 	bool CheckStartCords(Cordinates*& _cords, const Grid& _grid, const u_int _index);
