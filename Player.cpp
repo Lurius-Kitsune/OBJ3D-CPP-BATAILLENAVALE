@@ -49,17 +49,25 @@ void Player::Init()
 
 Cordinates Player::GetCoordsToAttack()
 {
-    u_int _posX, _posY;
+    char _posY;
+    u_int _posX;
 
-    DISPLAY("Tu veux attaquer ou?", true);
-    cin >> _posX;
-    cin >> _posY;
-    return Cordinates( _posX, _posY );
+    //TODO
+    opponentGrid->Display();
+    DISPLAY("Tu veux attaquer ou ?", true);
+    cin >> _posY >> _posX;
+
+    return Cordinates(_posX, int(_posY - 'A'));
 }
 
 bool Player::AnalyseAttack(const Cordinates* _coordsToAttack)
 {
     return ownGrid->CheckAttack(_coordsToAttack);
+}
+
+void Player::UpdateOpponentGrid(const Cordinates& _coordsToAttack, const bool _hasHit)
+{
+    opponentGrid->GetTile(&_coordsToAttack)->SetIsHit(_hasHit);
 }
 
 void Player::DisplayOponnentGrid()

@@ -26,8 +26,6 @@
 
 int main()
 {
-    
-
     Game _myGame = Game("Thomas", "Margeuritte");
 
     _myGame.Launch();

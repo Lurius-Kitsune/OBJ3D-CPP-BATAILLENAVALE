@@ -9,6 +9,12 @@ class Tile
 	bool isHit;
 
 public:
+
+	void SetIsHit(const bool _hasHit)
+	{
+		isHit = _hasHit;
+	}
+
 	void SetShip(Ship* _ship)
 	{
 		ship = _ship;

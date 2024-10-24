@@ -136,6 +136,7 @@
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConsoleColorMacro.h" />
     <ClInclude Include="Cordinates.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Grid.h" />

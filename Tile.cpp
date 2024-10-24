@@ -22,11 +22,12 @@ bool Tile::IsHit(const Cordinates* _attackLocation, bool& _isSunk)
 	return ship && isHit;
 }
 
+
 void Tile::Display()
 {
 	// Mettre en rouge si c'est toucher !
 	// bleu si c'est de l'eau
 	// sinon blanc
-	DISPLAY((!ship ? '~' : ship->GetAppearance()), false);
-	//DISPLAY("~", false);
+	DISPLAY((!ship ? !isHit ? '~' : 'O' : ship->GetAppearance()), false);
+	//DISPLAY(RESET, false);
 }

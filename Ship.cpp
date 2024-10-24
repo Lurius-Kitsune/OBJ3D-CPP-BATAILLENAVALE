@@ -19,7 +19,6 @@ Ship::Ship(Ship* _ship)
 
 Ship::~Ship()
 {
-	
 	delete[] cordinatesArray;
 }
 
