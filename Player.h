@@ -42,6 +42,7 @@ public:
     Cordinates GetCoordsToAttack();
     bool AnalyseAttack(const Cordinates* _coordsToAttack);
     void UpdateOpponentGrid(const Cordinates& _coordsToAttack, const bool _hasHit);
+    void DisplayMyGrid();
     void DisplayOponnentGrid();
 };
 

@@ -56,18 +56,17 @@ void Grid::Display()
 
 bool Grid::CheckAttack(const Cordinates* _cordinate)
 {
-	for (u_int _rowIndex = 0; _rowIndex < gridSize; _rowIndex++)
+	bool _isSunk = false;
+	const bool _hasHit = grid[_cordinate->x][_cordinate->y].IsHit(_isSunk);
+	
+	if (!_hasHit)
 	{
-		for (u_int _columnIndex = 0; _columnIndex < gridSize; _columnIndex++)
-		{
-			bool _isSunk = false;
-			if (grid[_rowIndex][_columnIndex].IsHit(_cordinate, _isSunk))
-			{
-				string _sunkText = _isSunk ? "et coulé " : " ";
-				DISPLAY("Touché " + _sunkText + "à : " + _cordinate->ToString() + " !", true);
-				return true;
-			}
-		}
+		DISPLAY("LOUPER !", true);
+		return false;
 	}
-	return false;
+
+	string _sunkText = _isSunk ? "et coulé " : " ";
+	DISPLAY("Touché " + _sunkText + "à : " + _cordinate->ToString() + " !", true);
+	return true;
+
 }

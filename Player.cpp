@@ -53,11 +53,11 @@ Cordinates Player::GetCoordsToAttack()
     u_int _posX;
 
     //TODO
-    opponentGrid->Display();
+    DisplayOponnentGrid();
     DISPLAY("Tu veux attaquer ou ?", true);
     cin >> _posY >> _posX;
 
-    return Cordinates(_posX, int(_posY - 'A'));
+    return Cordinates(_posX - 1, int(_posY - 'A'));
 }
 
 bool Player::AnalyseAttack(const Cordinates* _coordsToAttack)
@@ -68,6 +68,11 @@ bool Player::AnalyseAttack(const Cordinates* _coordsToAttack)
 void Player::UpdateOpponentGrid(const Cordinates& _coordsToAttack, const bool _hasHit)
 {
     opponentGrid->GetTile(&_coordsToAttack)->SetIsHit(_hasHit);
+}
+
+void Player::DisplayMyGrid()
+{
+    ownGrid->Display();
 }
 
 void Player::DisplayOponnentGrid()

@@ -9,17 +9,16 @@ Tile::Tile(const Cordinates& _cordinates)
 }
 
 
-bool Tile::IsHit(const Cordinates* _attackLocation, bool& _isSunk)
+bool Tile::IsHit(bool& _isSunk)
 {
-	
-	isHit = cordinates.IsSame(_attackLocation);
-	
-	if (ship && isHit)
+	isHit = true;
+
+	if (ship)
 	{
 		_isSunk = ship->AddHit();
 	}
 
-	return ship && isHit;
+	return ship;
 }
 
 
@@ -28,6 +27,8 @@ void Tile::Display()
 	// Mettre en rouge si c'est toucher !
 	// bleu si c'est de l'eau
 	// sinon blanc
-	DISPLAY((!ship ? !isHit ? '~' : 'O' : ship->GetAppearance()), false);
-	//DISPLAY(RESET, false);
+	const string& _color = isHit ? ship ? RED : BLUE : WHITE;
+	const char _char = !ship ? '~' : ship->GetAppearance();
+	DISPLAY(_color + _char , false);
+	//DISPLAY("~", false);
 }

@@ -35,13 +35,16 @@ void Game::Launch()
     do
     {
         Player* _currentPlayer = _players[_playerIndex];
+
         // Afin de faire 01 01 01 01 01 01 01 01 01 01 01 01 01 
         // CLOCK MODULO
         _otherPlayerIndex = (_playerIndex + 1) % _playersCount;
-        //_currentPlayer->DisplayMyGrid();
+        
         const Cordinates& _coordsToAttack = _currentPlayer->GetCoordsToAttack();
         _hasHit = _players[_otherPlayerIndex]->AnalyseAttack(&_coordsToAttack);
         _currentPlayer->UpdateOpponentGrid(_coordsToAttack, _hasHit);
+
+        system("pause");
 
         if (_hasHit)
         {
