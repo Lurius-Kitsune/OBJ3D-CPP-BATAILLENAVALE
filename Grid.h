@@ -7,6 +7,11 @@ class Grid
 
 public:
 
+	void SetTile(const Cordinates& _cordinate, Tile _tile) const
+	{
+		grid[_cordinate.x][_cordinate.y] = _tile;
+	}
+
 	Tile* GetTile(const Cordinates* _cordinate) const
 	{
 		if (_cordinate->y >= gridSize || _cordinate->x >= gridSize) return nullptr;
@@ -23,8 +28,8 @@ public:
 	~Grid();
 
 public:
-	void Init();
+	void Init(const bool _isOpponent);
 	void Display();
-	bool CheckAttack(const Cordinates* _cordinate);
+	Tile* CheckAttack(const Cordinates* _cordinate);
 };
 

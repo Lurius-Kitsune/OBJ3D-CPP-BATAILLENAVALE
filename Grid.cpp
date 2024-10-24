@@ -12,14 +12,14 @@ Grid::~Grid()
 	delete[] grid;
 }
 
-void Grid::Init()
+void Grid::Init(const bool _isOpponent)
 {
 	for (u_int  _rowIndex = 0; _rowIndex < gridSize; _rowIndex++)
 	{
 		grid[_rowIndex] = new Tile[gridSize];
 		for (u_int _columnIndex = 0; _columnIndex < gridSize; _columnIndex++)
 		{
-			grid[_rowIndex][_columnIndex] = Tile({ _rowIndex, _columnIndex });
+			grid[_rowIndex][_columnIndex] = Tile({ _rowIndex, _columnIndex }, _isOpponent);
 		}
 	}
 }
@@ -54,19 +54,20 @@ void Grid::Display()
 	DISPLAY(" ", true);
 }
 
-bool Grid::CheckAttack(const Cordinates* _cordinate)
+Tile* Grid::CheckAttack(const Cordinates* _cordinate)
 {
 	bool _isSunk = false;
-	const bool _hasHit = grid[_cordinate->x][_cordinate->y].IsHit(_isSunk);
+	Tile _tile = grid[_cordinate->x][_cordinate->y];
+	const bool _hasHit = _tile.IsHit(_isSunk);
 	
 	if (!_hasHit)
 	{
 		DISPLAY("LOUPER !", true);
-		return false;
+		return nullptr;
 	}
 
 	string _sunkText = _isSunk ? "et coulé " : " ";
 	DISPLAY("Touché " + _sunkText + "à : " + _cordinate->ToString() + " !", true);
-	return true;
+	return &_tile;
 
 }

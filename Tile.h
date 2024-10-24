@@ -7,6 +7,7 @@ class Tile
 	Cordinates cordinates;
 	Ship* ship;
 	bool isHit;
+	bool isOpponent;
 
 public:
 
@@ -26,7 +27,7 @@ public:
 	}
 
 	Tile() = default;
-	Tile(const Cordinates& _cordinates);
+	Tile(const Cordinates& _cordinates, const bool _isOpponent);
 public:
 	bool IsHit(bool& _isSunk);
 	void Display();

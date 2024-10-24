@@ -32,8 +32,8 @@ Player::~Player()
 
 void Player::Init()
 {
-    ownGrid->Init();
-    opponentGrid->Init();
+    ownGrid->Init(false);
+    opponentGrid->Init(true);
 
     // Pour chaque type de bateau
     for (u_int _index = 0; _index < shipDataCount; _index++)
@@ -49,25 +49,32 @@ void Player::Init()
 
 Cordinates Player::GetCoordsToAttack()
 {
-    char _posY;
-    u_int _posX;
+    u_int _posY;
+    char _posX;
 
     //TODO
     DisplayOponnentGrid();
     DISPLAY("Tu veux attaquer ou ?", true);
-    cin >> _posY >> _posX;
+    cin >> _posX >> _posY;
 
-    return Cordinates(_posX - 1, int(_posY - 'A'));
+    return Cordinates(int(_posX - 'A'), _posY - 1);
 }
 
-bool Player::AnalyseAttack(const Cordinates* _coordsToAttack)
+Tile* Player::AnalyseAttack(const Cordinates* _coordsToAttack)
 {
     return ownGrid->CheckAttack(_coordsToAttack);
 }
 
-void Player::UpdateOpponentGrid(const Cordinates& _coordsToAttack, const bool _hasHit)
+void Player::UpdateOpponentGrid(const Cordinates& _coordsToAttack, const Tile* _opponentTile)
 {
-    opponentGrid->GetTile(&_coordsToAttack)->SetIsHit(_hasHit);
+    if (_opponentTile)
+    {
+        opponentGrid->SetTile(_coordsToAttack, *_opponentTile);
+    }
+    else 
+    {
+        opponentGrid->GetTile(&_coordsToAttack)->SetIsHit(true);
+    }
 }
 
 void Player::DisplayMyGrid()

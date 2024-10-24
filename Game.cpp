@@ -25,7 +25,7 @@ Game::~Game()
 
 void Game::Launch()
 {
-    bool _hasHit;
+    Tile* _opponentTile;
 
     Player* _players[] = {player1, player2};
     const u_int _playersCount = size(_players);
@@ -35,18 +35,18 @@ void Game::Launch()
     do
     {
         Player* _currentPlayer = _players[_playerIndex];
+        DISPLAY("-> Au joueur " + _currentPlayer->GetName() + " de jouer !", true);
 
         // Afin de faire 01 01 01 01 01 01 01 01 01 01 01 01 01 
         // CLOCK MODULO
         _otherPlayerIndex = (_playerIndex + 1) % _playersCount;
         
         const Cordinates& _coordsToAttack = _currentPlayer->GetCoordsToAttack();
-        _hasHit = _players[_otherPlayerIndex]->AnalyseAttack(&_coordsToAttack);
-        _currentPlayer->UpdateOpponentGrid(_coordsToAttack, _hasHit);
+        _opponentTile = _players[_otherPlayerIndex]->AnalyseAttack(&_coordsToAttack);
+        _currentPlayer->UpdateOpponentGrid(_coordsToAttack, _opponentTile);
 
-        system("pause");
 
-        if (_hasHit)
+        if (!_opponentTile)
         {
             _playerIndex++;
             _playerIndex %= _playersCount;

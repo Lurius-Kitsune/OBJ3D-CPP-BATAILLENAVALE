@@ -34,14 +34,20 @@ class Player
     u_int shipDataCount;
 
 public:
+
+    string GetName()
+    {
+        return name;
+    }
+
     Player() = default;
     Player(const string& _name, const u_int& _gridSize, ShipData* _shipData, const u_int& _shipDataCount);
     ~Player();
 public:
     void Init();
     Cordinates GetCoordsToAttack();
-    bool AnalyseAttack(const Cordinates* _coordsToAttack);
-    void UpdateOpponentGrid(const Cordinates& _coordsToAttack, const bool _hasHit);
+    Tile* AnalyseAttack(const Cordinates* _coordsToAttack);
+    void UpdateOpponentGrid(const Cordinates& _coordsToAttack, const Tile* _oponnentTile);
     void DisplayMyGrid();
     void DisplayOponnentGrid();
 };
