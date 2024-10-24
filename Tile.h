@@ -26,6 +26,11 @@ public:
 		return isOpponent;
 	}
 
+	Ship* GetShip()
+	{
+		return ship;
+	}
+
 	void SetShip(Ship* _ship)
 	{
 		ship = _ship;
@@ -39,7 +44,7 @@ public:
 	Tile() = default;
 	Tile(const Cordinates& _cordinates, const bool _isOpponent);
 public:
-	bool IsHit(bool& _isSunk);
+	bool IsHit();
 	void Display();
 };
 

@@ -10,13 +10,13 @@ Tile::Tile(const Cordinates& _cordinates, const bool _isOpponent)
 	isOpponent = _isOpponent;
 }
 
-bool Tile::IsHit(bool& _isSunk)
+bool Tile::IsHit()
 {
 	isHit = true;
 
 	if (ship)
 	{
-		_isSunk = ship->AddHit();
+		ship->AddHit();
 	}
 
 	return ship;

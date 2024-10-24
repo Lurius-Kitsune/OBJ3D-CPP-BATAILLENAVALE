@@ -40,7 +40,7 @@ void Game::Launch()
         // Afin de faire 01 01 01 01 01 01 01 01 01 01 01 01 01 
         _otherPlayerIndex = (_playerIndex + 1) % _playersCount;
         // CLOCK MODULO
-        DISPLAY("Au joueur " + _currentPlayer->GetName() + " de jouer !", true);
+        DISPLAY("►Au joueur " + _currentPlayer->GetName() + " de jouer !", true);
         SPACE;
         const Cordinates& _coordsToAttack = _currentPlayer->GetCoordsToAttack();
 

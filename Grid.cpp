@@ -53,9 +53,8 @@ void Grid::Display()
 
 Tile* Grid::CheckAttack(const Cordinates* _cordinate)
 {
-	bool _isSunk = false;
 	Tile& _tile = grid[_cordinate->x][_cordinate->y];
-	const bool _hasHit = _tile.IsHit(_isSunk);
+	const bool _hasHit = _tile.IsHit();
 	
 	if (!_hasHit)
 	{
@@ -63,7 +62,7 @@ Tile* Grid::CheckAttack(const Cordinates* _cordinate)
 		return nullptr;
 	}
 
-	string _sunkText = _isSunk ? "et coulé " : " ";
+	string _sunkText = _tile.GetShip()->IsSunk() ? "et coulé " : " ";
 	DISPLAY("Touché " + _sunkText + "à : " + _cordinate->ToString() + " !", true);
 	return &_tile;
 

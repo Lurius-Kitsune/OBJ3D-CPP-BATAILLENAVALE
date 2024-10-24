@@ -69,17 +69,22 @@ Cordinates Player::GetCoordsToAttack()
 
         DISPLAY("Tu veux attaquer ou ?", true);
         _coordsText = GetLine();
-        if (_coordsText.size() != 2)
+        if (_coordsText.size() <  2)
         {
             CLEAR_SCREEN;
         }
 
-    } while (_coordsText.size() != 2);
+    } while (_coordsText.size() < 2);
     char _posX = _coordsText[0];
     u_int _posY = _coordsText[1] - '1';
+    if (_coordsText.size() == 3)
+    {
+        _posY = (_coordsText[1] - '0'  + (_coordsText[2] - '0')) * 10 ;
+    }
+   
 
     
-    return Cordinates(int(_posX - 'A'), _posY);
+    return Cordinates(int(_posX - 'A'), _posY - 1);
 }
 
 Tile* Player::AnalyseAttack(const Cordinates* _coordsToAttack)

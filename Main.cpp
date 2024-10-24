@@ -22,7 +22,6 @@
 // Déterminer la fin de la partie - Game
 
 // Game -> 2 joueur -> Grille -> Case -> Bateau ou marqueur -> Position
-
 int main()
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); // Detection de fuite de mémoire
