@@ -21,6 +21,11 @@ public:
 		isOpponent = _hisOpponent;
 	}
 
+	bool IsOpponent()const
+	{
+		return isOpponent;
+	}
+
 	void SetShip(Ship* _ship)
 	{
 		ship = _ship;

@@ -26,17 +26,18 @@ void Grid::Init(const bool _isOpponent)
 
 void Grid::Display()
 {
+	const string& _color = grid[0][0].IsOpponent() ? RED : GREEN;
 	DISPLAY(" ", false);
 	for (u_int _index = 0; _index < gridSize; _index++)
 	{
 		DISPLAY(" ", false);
-		DISPLAY(MAGENTA + to_string(_index+1) + RESET, false);
+		DISPLAY(_color + to_string(_index+1) + RESET, false);
 	}
 
 	DISPLAY("", true);
 	for (u_int _rowIndex = 0; _rowIndex < gridSize; _rowIndex++)
 	{
-		DISPLAY(MAGENTA, false);
+		DISPLAY(_color, false);
 		DISPLAY( char('A' + _rowIndex), false);
 		DISPLAY(RESET, false);
 
@@ -48,7 +49,7 @@ void Grid::Display()
 
 		DISPLAY(" ", false);
 
-		DISPLAY(MAGENTA, false);
+		DISPLAY(_color, false);
 		DISPLAY(char('A' + _rowIndex), false);
 		DISPLAY(RESET, true);
 	}
@@ -56,7 +57,7 @@ void Grid::Display()
 	for (u_int _index = 0; _index < gridSize; _index++)
 	{
 		DISPLAY(" ", false);
-		DISPLAY(MAGENTA + to_string(_index + 1) + RESET, false);
+		DISPLAY(_color + to_string(_index + 1) + RESET, false);
 	}
 	DISPLAY(" ", true);
 }

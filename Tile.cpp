@@ -25,10 +25,25 @@ bool Tile::IsHit(bool& _isSunk)
 
 void Tile::Display()
 {
-	// Mettre en rouge si c'est toucher !
-	// bleu si c'est de l'eau
-	// sinon blanc
-	const string& _color = isHit ? ship ? ship->IsSunk() ? RED BLINK_TEXT : YELLOW BLINK_TEXT : BLUE: WHITE;
+	/*
+	* Code couleur
+	* Rouge -> Bateau couler
+	* Jaune -> Toucher
+	* Bleu -> toucher vide
+	* Blanc -> case non toucher
+	*/
+
+	string _color;
+
+	if (isOpponent)
+	{
+		_color = ship ? (isHit ? (ship->IsSunk() ? RED BLINK_TEXT : YELLOW) : RESET) : (isHit ? BLUE : CYAN);
+	}
+	else
+	{
+		_color = ship ? (isHit ? (ship->IsSunk() ? RED BLINK_TEXT : YELLOW) : RESET) : (isHit ? BLUE : CYAN);
+	}
+
 	const char _char = ship ? (isOpponent && !ship->IsSunk() ? '#' : ship->GetAppearance()) : '~';
 	DISPLAY(_color + _char , false);
 	DISPLAY(RESET_BLINK RESET, false);

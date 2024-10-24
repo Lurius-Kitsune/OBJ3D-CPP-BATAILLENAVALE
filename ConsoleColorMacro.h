@@ -48,7 +48,7 @@
 #define DARK_YELLOW "\x1B[38;5;136m"
 #define YELLOW "\x1B[38;5;226m"
 #define LIME "\x1B[38;5;82m"
-#define GREEN "\x1B[38;5;106m"
+#define GREEN "\033[32m"
 #define BLUE "\x1B[38;5;63m"
 #define LIGHT_BLUE "\x1B[38;5;12m"
 #define CYAN "\x1B[38;5;51m"
