@@ -1,6 +1,6 @@
 #pragma once
 #include "Random.h"
-
+#include "UserInteraction.h"
 struct Cordinates
 {
 	u_int x;

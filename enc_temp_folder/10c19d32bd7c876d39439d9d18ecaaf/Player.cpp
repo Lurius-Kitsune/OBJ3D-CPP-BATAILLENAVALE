@@ -78,7 +78,7 @@ Cordinates Player::GetCoordsToAttack()
     u_int _posY = _coordsText[1] - '1';
 
     
-    return Cordinates(int(_posX - 'A'), _posY);
+    return Cordinates(int(_posX - 'A'), _posY - 1);
 }
 
 Tile* Player::AnalyseAttack(const Cordinates* _coordsToAttack)

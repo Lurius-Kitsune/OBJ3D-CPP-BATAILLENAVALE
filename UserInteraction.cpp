@@ -16,5 +16,5 @@ string GetLine()
 		_line += char(_charASCII);
 	} while (true);
 
-	return _line + '\0';
+	return _line;
 }

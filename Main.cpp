@@ -1,5 +1,3 @@
-#include "Macro.h"
-#include "UserInteraction.h"
 #include "Game.h"
 // Les classe à crée 
 // Ship
@@ -30,12 +28,6 @@ int main()
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); // Detection de fuite de mémoire
 
     locale::global(locale("fr-FR")); // UTF8
-    
-    DISPLAY(GetLine(), true);
-    DISPLAY(GetLine(), true);
-    DISPLAY(GetLine(), true);
-
-    return -1;
 
 
     Game _myGame = Game("Thomas", "Margeuritte");
